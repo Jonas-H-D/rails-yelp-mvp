@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  before_action :find_restaurant, only: [:reviews]
   def index
     @restaurants = Restaurant.all
   end
@@ -38,7 +39,15 @@ class RestaurantsController < ApplicationController
     redirect_to restaurants_path
   end
 
+  def reviews
+    @reviews = @restaurant.reviews
+  end
+
   private
+
+  def find_restaurant
+    @restaurant = Restaurant.find(params[:id])
+  end
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :category)

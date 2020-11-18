@@ -4,7 +4,11 @@
 <p><%= @restaurant.address %></p>
 <p><%= @restaurant.phone_number %></p>
 <p><%= @restaurant.category %></p>
-<p><%= @restaurant.rating %></p>
+
+<ul><%@restaurant.reviews.each do |review|%>
+  <li> <%= review.content %></li>
+  <% end %>
+</ul>
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
 <%= link_to 'Back', restaurants_path %> |
