@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   post 'restaurants', to: 'restaurants#create'
   get 'restaurants/:id/edit', to: 'restaurants#edit'
   patch 'restaurants/:id', to: 'restaurants#update'
+  delete "restaurants/:id", to: "restaurants#destroy"
+
+  resources :restaurants do
+    resources :reviews, only: [:new, :create]
+  end
 end
